@@ -35,9 +35,9 @@ export const addSmurf = (updatedSmurfs) => {
     } 
 }
 
-export const setError = () => {
+export const setError = (errorString) => {
     return dispatch => {
-        dispatch({ type: ADD_ERROR_VALUE  });
+        dispatch({ type: ADD_ERROR_VALUE, payload: errorString });
     }
 }
 

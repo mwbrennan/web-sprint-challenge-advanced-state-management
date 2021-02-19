@@ -36,7 +36,7 @@ const reducer = (state = initialState, action)=>{
             return({
                 ...state,
                 isLoading: true,
-                error: 'Make sure each box if filled out properly',
+                error: action.payload,
             })
         default:
             return state;

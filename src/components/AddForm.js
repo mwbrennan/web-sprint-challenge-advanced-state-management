@@ -19,9 +19,13 @@ const AddForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (state.name === "" || state.position === "" || state.nickname === "") {
+        if (state.name === "") {
+            props.setError('Please fill out your name')
+        } else if (state.position === "") {
+            props.setError('Please fill out your position')
+        } else if ( state.nickname === "") {
             // errorMessage = "Name, position and nickname fields are required.";
-            props.setError();
+            props.setError('Please fill our your nickname')
         } else {
             props.addSmurf(state);
             setState({
@@ -65,7 +69,7 @@ const AddForm = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      setError: () => dispatch(setError()),
+      setError: (data) => dispatch(setError(data)),
       addSmurf: (data) => dispatch(addSmurf(data)),
     }
   }
