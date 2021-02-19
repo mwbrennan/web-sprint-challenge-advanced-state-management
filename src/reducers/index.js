@@ -1,8 +1,47 @@
+import { START_SMURF_FETCH, SUCCESS_SMURF_FETCH, FAILED_SMURF_FETCH, ADD_SMURF, ADD_ERROR_VALUE, } from '../actions/index';
+
 
 export const initialState = {
+    smurfs: [],
+    isLoading: false,
+    error: '',
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState, action)=>{
+    switch(action.type) {
+        case(START_SMURF_FETCH):
+            return({
+                ...state,
+                isLoading: true,
+            })
+        case(SUCCESS_SMURF_FETCH):
+            return({
+                ...state,
+                smurfs: action.payload,
+                isLoading: false,
+            })
+        case(FAILED_SMURF_FETCH):
+            return({
+                ...state,
+                isLoading: true,
+                error: action.payload,
+            })
+        case(ADD_SMURF):
+            return({
+                ...state,
+                smurfs: [...state.smurfs, action.payload],
+                isLoading: false,
+            })
+        case(ADD_ERROR_VALUE):
+            return({
+                ...state,
+                isLoading: true,
+                error: 'Make sure each box if filled out properly',
+            })
+        default:
+            return state;
+    };
+
 }
 
 export default reducer;
